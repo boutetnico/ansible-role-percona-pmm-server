@@ -1,6 +1,6 @@
 ---
 - name: Ensure pmm-data container exists
-  community.general.docker_container:
+  community.docker.docker_container:
     comparisons:
       '*': ignore
     image: "{{ pmm_server_docker_image_name }}:{{ pmm_server_docker_image_version }}"
@@ -11,7 +11,7 @@
     command: /bin/true
 
 - name: Ensure pmm-server container exists
-  community.general.docker_container:
+  community.docker.docker_container:
     env: "{{ pmm_server_docker_env }}"
     image: "{{ pmm_server_docker_image_name }}:{{ pmm_server_docker_image_version }}"
     name: pmm-server
@@ -24,7 +24,7 @@
       - pmm-data
 
 - name: Remove dangling docker image
-  community.general.docker_prune:
+  community.docker.docker_prune:
     images: true
     images_filters:
       dangling: false
@@ -47,7 +47,7 @@
   when: pmm_server_anonymous_access
 
 - name: Restart pmm-server
-  community.general.docker_container:
+  community.docker.docker_container:
     name: pmm-server
     restart: true
   changed_when: false
