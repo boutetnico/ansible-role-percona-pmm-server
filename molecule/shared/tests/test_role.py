@@ -1,14 +1,9 @@
-import pytest
+def test_pmm_server_container(host):
+    container = host.docker("pmm-server")
+    assert container.name == "pmm-server"
+    assert container.is_running
 
 
-@pytest.mark.parametrize(
-    "name,running",
-    [
-        ("pmm-data", False),
-        ("pmm-server", True),
-    ],
-)
-def test_pmm_container(host, name, running):
-    container = host.docker(name)
-    assert container.name == name
-    assert container.is_running == running
+def test_pmm_data_volume(host):
+    result = host.run("docker volume inspect pmm-data")
+    assert result.rc == 0
