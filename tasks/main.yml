@@ -1,14 +1,7 @@
 ---
-- name: Ensure pmm-data container exists
-  community.docker.docker_container:
-    comparisons:
-      '*': ignore
-    image: "{{ pmm_server_docker_image_name }}:{{ pmm_server_docker_image_version }}"
+- name: Ensure pmm-data volume exists
+  community.docker.docker_volume:
     name: pmm-data
-    state: present
-    volumes:
-      - /srv
-    command: /bin/true
 
 - name: Ensure pmm-server container exists
   community.docker.docker_container:
@@ -20,8 +13,8 @@
     pull: "{{ pmm_server_docker_pull }}"
     restart_policy: "{{ pmm_server_restart_policy }}"
     state: "{{ pmm_server_container_state }}"
-    volumes_from:
-      - pmm-data
+    volumes:
+      - pmm-data:/srv
 
 - name: Remove dangling docker image
   community.docker.docker_prune:
