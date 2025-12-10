@@ -2,8 +2,8 @@
 - name: Prepare
   hosts: all
   vars:
-    docker_apt_signed_by: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
-    docker_apt_uris: "https://download.docker.com/linux/{{ ansible_distribution | lower }}"
+    docker_apt_signed_by: "https://download.docker.com/linux/{{ ansible_facts['distribution'] | lower }}/gpg"
+    docker_apt_uris: "https://download.docker.com/linux/{{ ansible_facts['distribution'] | lower }}"
     docker_architecture_map:
       "x86_64": "amd64"
       "aarch64": "arm64"
@@ -28,11 +28,11 @@
 
     - name: Configure Docker APT repository
       ansible.builtin.deb822_repository:
-        architectures: "{{ docker_architecture_map[ansible_architecture] }}"
+        architectures: "{{ docker_architecture_map[ansible_facts['architecture']] }}"
         components: stable
         name: docker
         signed_by: "{{ docker_apt_signed_by }}"
-        suites: "{{ ansible_distribution_release }}"
+        suites: "{{ ansible_facts['distribution_release'] }}"
         uris: "{{ docker_apt_uris }}"
 
     - name: Install Docker
