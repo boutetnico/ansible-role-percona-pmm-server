@@ -13,6 +13,7 @@
 
     docker_dependencies:
       - apt-transport-https
+      - curl
       - gnupg2
       - python3-debian
       - python3-docker

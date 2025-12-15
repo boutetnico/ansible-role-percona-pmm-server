@@ -15,13 +15,11 @@ concurrency:
 
 jobs:
   test:
-    runs-on: ${{ matrix.runner }}
+    # PMM server Docker image only available for amd64
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        runner:
-          - ubuntu-latest
-          - ubuntu-24.04-arm
         scenario:
           - debian-11
           - debian-12
