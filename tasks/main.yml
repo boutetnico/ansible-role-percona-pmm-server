@@ -15,6 +15,7 @@
     state: "{{ pmm_server_container_state }}"
     volumes:
       - pmm-data:/srv
+  no_log: true
 
 - name: Remove dangling docker image
   community.docker.docker_prune:
