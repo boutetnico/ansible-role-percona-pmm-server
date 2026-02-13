@@ -19,8 +19,8 @@ Ansible 2.10 or newer.
 Supported Platforms
 -------------------
 
-- [Debian - 11 (Bullseye)](https://wiki.debian.org/DebianBullseye)
 - [Debian - 12 (Bookworm)](https://wiki.debian.org/DebianBookworm)
+- [Debian - 13 (Trixie)](https://wiki.debian.org/DebianTrixie)
 - [Ubuntu - 22.04 (Jammy Jellyfish)](http://releases.ubuntu.com/22.04/)
 - [Ubuntu - 24.04 (Noble Numbat)](http://releases.ubuntu.com/24.04/)
 
@@ -56,8 +56,8 @@ Testing
 
 ## Debian
 
-    molecule --base-config molecule/shared/base.yml test --scenario-name debian-11
     molecule --base-config molecule/shared/base.yml test --scenario-name debian-12
+    molecule --base-config molecule/shared/base.yml test --scenario-name debian-13
 
 ## Ubuntu
 

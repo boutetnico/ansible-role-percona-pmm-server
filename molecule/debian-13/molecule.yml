@@ -1,6 +1,6 @@
 ---
 platforms:
-  - name: ansible-role-percona-pmm-server-debian-11
-    image: debian:11
+  - name: ansible-role-percona-pmm-server-debian-13
+    image: debian:13
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
